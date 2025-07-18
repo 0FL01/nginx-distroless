@@ -62,7 +62,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log
 
 # ---
-# Этап 2: Финальный образ на базе distroless, но с запуском от root
+# Этап 2: Финальный образ на базе distroless
 FROM gcr.io/distroless/base-debian12
 
 # Копируем созданных пользователя и группу
@@ -86,10 +86,8 @@ COPY --from=builder /lib/x86_64-linux-gnu/libcrypt.so.1 /lib/x86_64-linux-gnu/
 COPY --from=builder /usr/lib/x86_64-linux-gnu/libssl.so.3 /usr/lib/x86_64-linux-gnu/
 COPY --from=builder /usr/lib/x86_64-linux-gnu/libcrypto.so.3 /usr/lib/x86_64-linux-gnu/
 
-# Копируем ваш основной nginx.conf, который будет включать конфиги из conf.d
 COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80 443
 
-# Запуск nginx
 ENTRYPOINT ["/usr/sbin/nginx", "-g", "daemon off;"]
