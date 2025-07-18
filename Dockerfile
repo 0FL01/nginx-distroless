@@ -89,10 +89,6 @@ COPY --from=builder /usr/lib/x86_64-linux-gnu/libcrypto.so.3 /usr/lib/x86_64-lin
 # Копируем ваш основной nginx.conf, который будет включать конфиги из conf.d
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# USER инструкция не нужна, контейнер стартует от root
-# Мастер-процесс nginx прочитает SSL-ключи, откроет порт 443,
-# а затем породит рабочие процессы от имени 'nonroot', как указано в nginx.conf
-
 EXPOSE 80 443
 
 # Запуск nginx
