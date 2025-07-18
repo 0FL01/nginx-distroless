@@ -8,7 +8,7 @@
 - Только необходимые модули (HTTP/2, SSL, stream и др.)
 - Запуск мастер-процесса от root, воркеры — от непривилегированного пользователя `nonroot`
 - Логи проброшены в stdout/stderr (удобно для контейнеров)
-- Размер итогового образа: ~33MB
+- Размер итогового образа: ~35MB
 
 ## Сборка образа
 
@@ -37,5 +37,5 @@ docker run -d -p 80:80 -p 443:443 --name nginx nginx-distroless:1.29.0
 
 ```
 REPOSITORY         TAG     IMAGE ID       CREATED          SIZE
-nginx-distroless   1.29.0  0dd96b4a4418   31 seconds ago   33MB
+nginx-distroless   1.29.0  0dd96b4a4418   31 seconds ago   35MB
 ```
